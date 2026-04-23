@@ -36,22 +36,22 @@ export const WAVE_TOP_SHADOW_BAND = {
 } as const;
 
 export const WAVE_BOTTOM_SHADOW_BAND = {
-  transparentUntilPct: 58,
-  opaqueFromPct: 80,
+  transparentUntilPct: 10,
+  opaqueFromPct: 10,
 } as const;
 
 /** Ola superior: sombra hacia la arena (abajo). */
 export const WAVE_TOP_PAPERCUT_SHADOW = {
-  back: { offsetX: 2, offsetY: 2, blurPx: 10, opacity: 0.11 },
-  middle: { offsetX: 1, offsetY: 2, blurPx: 100, opacity: 1 },
-  front: { offsetX: 1, offsetY: 1, blurPx: 6, opacity: 0.075 },
+  back: { offsetX: 2, offsetY: 4, blurPx: 12, opacity: 0.40 },
+  middle: { offsetX: 1, offsetY: 4, blurPx: 12, opacity: 0.40 },
+  front: { offsetX: 1, offsetY: 4, blurPx: 12, opacity: 0.04 },
 } as const;
 
 /** Ola inferior: sombra hacia el centro (arriba). */
 export const WAVE_BOTTOM_PAPERCUT_SHADOW = {
-  back: { offsetX: -2, offsetY: -2, blurPx: 10, opacity: 0.11 },
-  middle: { offsetX: -1, offsetY: -2, blurPx: 8, opacity: 0.09 },
-  front: { offsetX: -1, offsetY: -1, blurPx: 6, opacity: 0.075 },
+  back: { offsetX: -2, offsetY: -4, blurPx: 12, opacity: 0.40 },
+  middle: { offsetX: -1, offsetY: -4, blurPx:12, opacity: 0.40 },
+  front: { offsetX: -1, offsetY: -4, blurPx:12, opacity: 0.040 },
 } as const;
 
 // ===============================
