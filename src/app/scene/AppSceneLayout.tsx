@@ -12,12 +12,15 @@ import { useAuth } from "../../features/auth/AuthContext";
 import { BottomPanel } from "./BottomPanel";
 import { LoginCard } from "./LoginCard";
 import { TopPanel } from "./TopPanel";
-import { useVisualTransition, VisualTransitionProvider } from "./VisualTransitionContext";
+import {
+  useVisualTransition,
+  VisualTransitionProvider,
+} from "./VisualTransitionContext";
 
 /**
  * Escena global login ↔ dashboard.
- * - Paneles superior/inferior permanecen montados (no overlay desechable).
- * - Unión recta en fase login; más adelante se puede sustituir solo la geometría de los paneles.
+ * - Paneles superior/inferior permanecen montados.
+ * - La arena vive exactamente entre ambos paneles.
  */
 export function AppSceneLayout() {
   return (
@@ -30,35 +33,44 @@ export function AppSceneLayout() {
 function SceneBody() {
   const { user } = useAuth();
   const location = useLocation();
-  const { sceneStep } = useVisualTransition();
+  const { sceneStep, topPanelHeight, bottomPanelHeight } =
+    useVisualTransition();
 
   if (!user && location.pathname !== "/login") {
     return <Navigate to="/login" replace />;
   }
 
-  const showLoginLayer = sceneStep === "loginIdle" || sceneStep === "loginCardExit";
+  const showLoginLayer =
+    sceneStep === "loginIdle" || sceneStep === "loginCardExit";
   const showDashboardLayer =
-    Boolean(user) && (sceneStep === "dashboardPanelsMove" || sceneStep === "dashboardIdle");
+    Boolean(user) &&
+    (sceneStep === "dashboardPanelsMove" || sceneStep === "dashboardIdle");
 
   return (
-    <div
-      className="relative min-h-screen w-full overflow-x-hidden"
-      style={{
-        backgroundColor: ARENA_BACKGROUND_COLOR,
-        backgroundImage: `url('${WAVE_PAPER_TEXTURE_URL}')`,
-        backgroundRepeat: "repeat",
-        backgroundSize: ARENA_TEXTURE_SIZE,
-        backgroundPosition: ARENA_TEXTURE_POSITION,
-        backgroundBlendMode: ARENA_TEXTURE_BLEND_MODE,
-        boxShadow: ARENA_PAPERCUT_INSET,
-      }}
-    >
-      {/* Capa de fondo: paneles rectos, z-0, no interceptan eventos */}
+    <div className="relative h-screen w-full overflow-hidden">
+      {/* Arena: solo ocupa el espacio real entre ola superior y ola inferior */}
+      <div
+        className="absolute inset-x-0 z-0"
+        style={{
+          top: topPanelHeight,
+          bottom: bottomPanelHeight,
+          backgroundColor: ARENA_BACKGROUND_COLOR,
+          backgroundImage: `url('${WAVE_PAPER_TEXTURE_URL}')`,
+          backgroundRepeat: "repeat",
+          backgroundSize: ARENA_TEXTURE_SIZE,
+          backgroundPosition: ARENA_TEXTURE_POSITION,
+          backgroundBlendMode: ARENA_TEXTURE_BLEND_MODE,
+          boxShadow: ARENA_PAPERCUT_INSET,
+        }}
+      />
+
+      {/* Paneles por encima de la arena */}
       <TopPanel />
       <BottomPanel />
 
+      {/* Contenido por encima */}
       {/* Contenido y tarjeta por encima */}
-      <div className="relative z-10 flex min-h-screen flex-col">
+      <div className="relative z-10 flex h-full min-h-0 flex-col">
         {showLoginLayer ? (
           <div className="absolute inset-0 z-20 flex items-center justify-center px-4 py-8">
             <LoginCard />
@@ -66,7 +78,7 @@ function SceneBody() {
         ) : null}
 
         <motion.div
-          className="relative z-10 flex min-h-screen min-w-0 flex-1 flex-col"
+          className="relative z-10 flex min-h-0 min-w-0 flex-1 flex-col"
           initial={false}
           animate={{
             opacity: showDashboardLayer ? 1 : 0,

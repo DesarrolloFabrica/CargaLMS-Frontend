@@ -27,9 +27,14 @@ export function SiteShell({
   children,
 }: SiteShellProps) {
   const opaque = !integratedScene;
+  const shellMinHeightClass = integratedScene ? "h-full" : "min-h-screen";
 
   return (
-    <div className={`flex min-h-screen flex-col ${integratedScene ? "bg-transparent" : "bg-slate-50/80"}`}>
+    <div
+      className={`flex flex-1 ${shellMinHeightClass} flex-col ${
+        integratedScene ? "bg-transparent" : "bg-slate-50/80"
+      }`}
+    >
       <SiteHeader navRole={navRole} actions={headerActions} />
       <div className="relative z-10 flex flex-1 flex-col">
         <SiteHero
@@ -38,7 +43,7 @@ export function SiteShell({
           minContentHeightPx={integratedScene ? DASHBOARD_HERO_CONTENT_MIN_PX : undefined}
           compactVertical={integratedScene}
         />
-        <div className="flex flex-1 flex-col justify-center">
+        <div className="flex flex-1 flex-col">
           <div
             className={`mx-auto w-full max-w-6xl px-4 py-8 ${
               integratedScene ? "bg-transparent" : "bg-slate-50/90"

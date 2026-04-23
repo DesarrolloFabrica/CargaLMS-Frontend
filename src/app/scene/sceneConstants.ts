@@ -15,7 +15,7 @@
  */
 export const DASHBOARD_HEADER_STACK_PX = 72;
 /** Altura mínima solo del área de texto del hero (sin cabecera). */
-export const DASHBOARD_HERO_CONTENT_MIN_PX = 180;
+export const DASHBOARD_HERO_CONTENT_MIN_PX = 132;
 export const DASHBOARD_TOP_PANEL_PX = DASHBOARD_HEADER_STACK_PX + DASHBOARD_HERO_CONTENT_MIN_PX;
 
 /** Altura final del bloque inferior (simula el fondo del footer). */

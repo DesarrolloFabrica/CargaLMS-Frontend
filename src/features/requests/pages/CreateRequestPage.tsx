@@ -22,6 +22,7 @@ export function CreateRequestPage({ onCreated }: CreateRequestPageProps) {
     const level = courseLevelType.trim();
     if (!name || !level || !driveUrl.trim() || !materialDescription.trim())
       return;
+    
     requestService.createRequest({
       courseName: name,
       courseLevelType: level,
@@ -30,6 +31,7 @@ export function CreateRequestPage({ onCreated }: CreateRequestPageProps) {
       requestedBy: "gif.user",
       assignedTo: "coord.user",
     });
+
     setCourseName("");
     setCourseLevelType("");
     setDriveUrl("");
@@ -37,64 +39,86 @@ export function CreateRequestPage({ onCreated }: CreateRequestPageProps) {
     onCreated();
   }
 
+  const inputStyles = "w-full rounded-md border border-slate-200 bg-slate-50/50 p-2.5 text-sm transition-all focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500";
+  const labelStyles = "block mb-1.5 text-xs font-semibold text-slate-600 uppercase tracking-wider";
+
   return (
-    <div className="relative">
-      {/* BARRA LATERAL AZUL */}
-      <div className="absolute left-0 top-0 h-full w-30 bg-blue-200 rounded-l-[24px] z-0"></div>
-      {/* CÍRCULO SUPERIOR IZQUIERDO */}
-      <div className="absolute -top-10 -left-10 h-20 w-20 rounded-full bg-white border border-slate-200 z-20"></div>
+    <div className="w-full">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        {/* Cabecera Corporativa */}
+        <div className="border-b border-slate-100 bg-slate-50/50 px-6 py-4">
+          <h2 className="text-lg font-bold text-slate-800">Nueva Solicitud GIF</h2>
+          <p className="text-xs text-slate-500">Complete los detalles para procesar el nuevo material.</p>
+        </div>
 
-      {/* TARJETA */}
-      <div className="relative ml-15 bg-white rounded-r-[24px] border border-slate-200 shadow-sm p-6 pt-10 z-10">       
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <h2 className="text-lg font-semibold">Nueva solicitud GIF</h2>
+        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Nombre de la Materia */}
+            <div className="col-span-1">
+              <label className={labelStyles}>Nombre de la Materia</label>
+              <input
+                type="text"
+                className={inputStyles}
+                placeholder="Ej. Cálculo Integral"
+                value={courseName}
+                onChange={(e) => setCourseName(e.target.value)}
+                autoComplete="off"
+              />
+            </div>
 
-          <input
-            type="text"
-            className="w-full rounded border border-slate-300 p-2"
-            placeholder="Nombre de la materia"
-            value={courseName}
-            onChange={(event) => setCourseName(event.target.value)}
-            autoComplete="off"
-          />
-
-          <div>
-            <input
-              type="text"
-              className="w-full rounded border border-slate-300 p-2"
-              placeholder="Tipo de materia"
-              list={COURSE_LEVEL_DATALIST_ID}
-              value={courseLevelType}
-              onChange={(event) => setCourseLevelType(event.target.value)}
-              autoComplete="off"
-            />
-            <datalist id={COURSE_LEVEL_DATALIST_ID}>
-              {courseLevelSuggestions.map((value) => (
-                <option key={value} value={value} />
-              ))}
-            </datalist>
+            {/* Tipo de Materia */}
+            <div className="col-span-1">
+              <label className={labelStyles}>Tipo de Materia</label>
+              <input
+                type="text"
+                className={inputStyles}
+                placeholder="Seleccione nivel"
+                list={COURSE_LEVEL_DATALIST_ID}
+                value={courseLevelType}
+                onChange={(e) => setCourseLevelType(e.target.value)}
+                autoComplete="off"
+              />
+              <datalist id={COURSE_LEVEL_DATALIST_ID}>
+                {courseLevelSuggestions.map((value) => (
+                  <option key={value} value={value} />
+                ))}
+              </datalist>
+            </div>
           </div>
 
-          <input
-            className="w-full rounded border border-slate-300 p-2"
-            placeholder="Enlace de Google Drive"
-            value={driveUrl}
-            onChange={(event) => setDriveUrl(event.target.value)}
-          />
+          {/* Enlace Drive */}
+          <div>
+            <label className={labelStyles}>Enlace de Google Drive</label>
+            <input
+              type="url"
+              className={inputStyles}
+              placeholder="https://drive.google.com/..."
+              value={driveUrl}
+              onChange={(e) => setDriveUrl(e.target.value)}
+            />
+          </div>
 
-          <textarea
-            className="w-full rounded border border-slate-300 p-2"
-            placeholder="Descripcion del material"
-            value={materialDescription}
-            onChange={(event) => setMaterialDescription(event.target.value)}
-          />
+          {/* Descripción */}
+          <div>
+            <label className={labelStyles}>Descripción del Material</label>
+            <textarea
+              rows={3}
+              className={`${inputStyles} resize-none`}
+              placeholder="Detalle los recursos solicitados..."
+              value={materialDescription}
+              onChange={(e) => setMaterialDescription(e.target.value)}
+            />
+          </div>
 
-          <button
-            type="submit"
-            className="rounded bg-slate-900 px-3 py-2 text-white"
-          >
-            Enviar solicitud
-          </button>
+          {/* Acciones */}
+          <div className="pt-2 flex justify-end">
+            <button
+              type="submit"
+              className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-colors hover:bg-blue-700 active:transform active:scale-95"
+            >
+              Enviar Solicitud
+            </button>
+          </div>
         </form>
       </div>
     </div>

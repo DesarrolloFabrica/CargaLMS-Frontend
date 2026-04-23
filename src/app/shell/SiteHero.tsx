@@ -20,11 +20,12 @@ const copy: Record<
   gif: {
     eyebrow: "Operaciones académicas",
     title: "Ordena la carga de material hacia el LMS",
-    
+    description: "Centraliza solicitudes, seguimiento y validación de materiales en un solo flujo.",
   },
   coordinator: {
     eyebrow: "Bandeja de coordinación",
     title: "Gestiona las solicitudes de carga al LMS",
+    description: "Revisa, devuelve o valida solicitudes para mantener el proceso de publicación al día.",
   },
 };
 
@@ -40,7 +41,7 @@ export function SiteHero({
     ? "border-b border-slate-200 bg-gradient-to-br from-slate-50 via-white to-sky-50/60"
     : "bg-transparent";
 
-  const paddingClass = compactVertical ? "py-8 sm:py-10 md:py-11" : "py-10 sm:py-12 md:py-14";
+  const paddingClass = compactVertical ? "py-4 sm:py-5 md:py-6" : "py-10 sm:py-12 md:py-14";
 
   return (
     <section

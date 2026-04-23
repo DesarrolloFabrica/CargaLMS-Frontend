@@ -1,13 +1,6 @@
 import type { ReactNode } from "react";
 import { Link, NavLink } from "react-router-dom";
 import type { UserRole } from "../../shared/types/domain";
-import {
-  HERO_HEADER_COLOR,
-  WAVE_PAPER_TEXTURE_BLEND_MODE,
-  WAVE_PAPER_TEXTURE_SIZE,
-  WAVE_PAPER_TEXTURE_URL,
-  WAVE_FRONT_TEXTURE_POSITION,
-} from "../theme/surfaceColors";
 
 interface SiteHeaderProps {
   /** Contenido a la derecha: notificaciones, cerrar sesion, etc. */
@@ -27,17 +20,7 @@ export function SiteHeader({ actions, navRole }: SiteHeaderProps) {
   const homeHref = navRole === "GIF" ? "/" : "/coordinator";
 
   return (
-    <header
-      className="sticky top-0 z-20 border-b border-slate-500/40"
-      style={{
-        backgroundColor: HERO_HEADER_COLOR,
-        backgroundImage: `url('${WAVE_PAPER_TEXTURE_URL}')`,
-        backgroundRepeat: "repeat",
-        backgroundSize: WAVE_PAPER_TEXTURE_SIZE,
-        backgroundPosition: WAVE_FRONT_TEXTURE_POSITION,
-        backgroundBlendMode: WAVE_PAPER_TEXTURE_BLEND_MODE,
-      }}
-    >
+    <header className="sticky top-0 z-20 bg-transparent">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:py-3.5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8">
           <Link to={homeHref} className="text-lg font-semibold text-white">

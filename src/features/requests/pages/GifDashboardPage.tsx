@@ -35,12 +35,16 @@ export function GifDashboardPage() {
         </div>
       }
     >
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="space-y-6">
-          <CreateRequestPage onCreated={() => setSelectedRequestId(null)} />
-          <MyRequestsPage role="GIF" onOpenRequest={setSelectedRequestId} />
+      <div className="grid items-start gap-4 md:grid-cols-2">
+        <CreateRequestPage onCreated={() => setSelectedRequestId(null)} />
+        <div className="h-full md:row-span-2">
+          <RequestWorkDetailPage
+            requestId={selectedRequestId}
+            role="GIF"
+            onDone={() => setSelectedRequestId(null)}
+          />
         </div>
-        <RequestWorkDetailPage requestId={selectedRequestId} role="GIF" onDone={() => setSelectedRequestId(null)} />
+        <MyRequestsPage role="GIF" onOpenRequest={setSelectedRequestId} />
       </div>
     </SiteShell>
   );
