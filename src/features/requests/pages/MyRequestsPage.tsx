@@ -11,68 +11,60 @@ export function MyRequestsPage({ role, onOpenRequest }: MyRequestsPageProps) {
   const requests = requestService.listRequestsByRole(role);
 
   return (
-    <div className="w-full">
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+    <div className="w-full max-w-2xl mx-auto">
+      <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl">
         
-        {/* Cabecera Corporativa */}
-        <div className="border-b border-slate-100 bg-slate-50/50 px-6 py-4 flex justify-between items-center">
-          <div>
-            <h2 className="text-lg font-bold text-slate-800">
-              {role === "GIF" ? "Mis Solicitudes" : "Bandeja de Coordinación"}
-            </h2>
-            <p className="text-xs text-slate-500">
-              {role === "GIF" 
-                ? "Seguimiento de tus materiales enviados" 
-                : "Gestión y revisión de solicitudes entrantes"}
-            </p>
-          </div>
-          <span className="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full border border-blue-100">
-            {requests.length} Total
+        {/* Cabecera Compacta */}
+        <div className="border-b border-slate-100 bg-slate-50/50 px-4 py-2.5 flex justify-between items-center">
+          <h2 className="text-sm font-bold text-[#00A8B5]">
+            {role === "GIF" ? "Mis Solicitudes" : "Bandeja Coordinación"}
+          </h2>
+          <span className="bg-[#BFF0EA] text-[#00A8B5] text-[10px] font-bold px-2 py-0.5 rounded-full">
+            {requests.length} Solicitudes
           </span>
         </div>
 
-        {/* Cuerpo de la Lista */}
+        {/* Cuerpo de la Lista - Padding reducido */}
         <div className="divide-y divide-slate-100">
           {requests.length === 0 ? (
-            <div className="p-12 text-center">
-              <p className="text-sm text-slate-400 italic">No se encontraron solicitudes registradas.</p>
+            <div className="p-8 text-center">
+              <p className="text-xs text-slate-400 italic">No hay registros.</p>
             </div>
           ) : (
             requests.map((request) => (
               <button
                 key={request.id}
-                className="group flex w-full items-center justify-between p-5 text-left transition-all hover:bg-blue-50/30 active:bg-blue-50"
+                className="group flex w-full items-center justify-between px-4 py-3 text-left transition-all hover:bg-slate-50 active:bg-blue-50"
                 onClick={() => onOpenRequest(request.id)}
               >
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+                <div className="flex flex-col min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <p className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
                       {request.courseName}
                     </p>
-                    <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase tracking-tight">
-                      {request.courseLevelType}
+                    <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-tighter shrink-0">
+                      • {request.courseLevelType}
                     </span>
                   </div>
                   
-                  <p className="text-xs text-slate-600 line-clamp-1 max-w-md">
+                  <p className="text-[11px] text-slate-500 line-clamp-1 opacity-80">
                     {request.materialDescription}
-                  </p>
-                  
-                  <p className="text-[11px] text-blue-500 font-medium truncate max-w-xs opacity-80">
-                    {request.driveUrl}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <StatusBadge status={request.status} />
-                  {/* Flecha indicadora de acción (Chevron) */}
+                <div className="flex items-center gap-3 shrink-0 ml-4">
+                  {/* StatusBadge adaptado a escala menor si es posible */}
+                  <div className="scale-90 origin-right">
+                    <StatusBadge status={request.status} />
+                  </div>
+                  
                   <svg 
-                    className="h-5 w-5 text-slate-300 group-hover:text-slate-400 transition-transform group-hover:translate-x-1" 
+                    className="h-4 w-4 text-slate-300 group-hover:text-blue-400 transition-all" 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="9 5l7 7-7 7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="9 5l7 7-7 7" />
                   </svg>
                 </div>
               </button>

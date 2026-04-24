@@ -53,7 +53,7 @@ export function SiteShell({
           </div>
         </div>
       </div>
-      <SiteFooter opaqueBackground={opaque} />
+      {!integratedScene && <SiteFooter opaqueBackground={opaque} />}
     </div>
   );
 }

@@ -11,6 +11,8 @@ import {
   WAVE_LAYER_TOP_COLOR,
   WAVE_TOP_PAPERCUT_SHADOW,
   WAVE_TOP_SHADOW_BAND,
+  WAVE_TOP_LAYER_GRADIENT,
+  WAVE_BOTTON_LAYER_GRADIENT,
 } from "../theme/surfaceColors";
 import { PANEL_EASE, PANEL_MOVE_DURATION_S } from "./sceneConstants";
 import { useVisualTransition } from "./VisualTransitionContext";
@@ -181,8 +183,7 @@ export function TopPanel() {
               className="scene-panel scene-panel-top absolute inset-0"
               style={{
                 zIndex: zMain,
-                backgroundColor: layer.color,
-                backgroundImage: `url('${WAVE_PAPER_TEXTURE_URL}')`,
+                backgroundImage: `${WAVE_TOP_LAYER_GRADIENT}, url('${WAVE_PAPER_TEXTURE_URL}')`,
                 backgroundRepeat: "repeat",
                 backgroundSize: WAVE_PAPER_TEXTURE_SIZE,
                 backgroundPosition: layer.texturePosition,
@@ -191,8 +192,8 @@ export function TopPanel() {
                 ...maskStyles,
               }}
             >
-            <div className="absolute inset-x-0 bottom-0 h-[520px]">                
-              {decorations?.map((item, index) => (
+              <div className="absolute inset-x-0 bottom-0 h-[520px]">
+                {decorations?.map((item, index) => (
                   <img
                     key={`${tier}-decoration-${index}`}
                     src={item.src}

@@ -49,15 +49,15 @@ export function SiteHero({
       aria-labelledby="hero-heading"
       style={minContentHeightPx ? { minHeight: minContentHeightPx } : undefined}
     >
-      <div className={`mx-auto max-w-6xl px-4 ${paddingClass}`}>
-        <p className="text-xs font-semibold uppercase tracking-wider text-sky-700 sm:text-sm">{eyebrow}</p>
+     <div className={`mx-auto max-w-6xl px-4 ${paddingClass} -translate-y-6`}>
+        
         <h1
           id="hero-heading"
-          className="mt-2 max-w-3xl text-2xl font-bold leading-tight tracking-tight text-slate-900 sm:text-3xl md:text-4xl"
+          className="mt-2 max-w-3xl text-2xl font-bold leading-tight tracking-tight text-[#ffffff] sm:text-3xl md:text-4xl"
         >
           {title}
         </h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 md:text-lg">{description}</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#ffffff] md:text-lg -translate-y-4">{description}</p>
       </div>
     </section>
   );

@@ -1,9 +1,12 @@
 // ===============================
 // COLORES BASE DE LAS CAPAS
 // ===============================
-export const WAVE_LAYER_TOP_COLOR = "#00bbc0";
-export const WAVE_LAYER_MIDDLE_COLOR = "#9ff9ed";
-export const WAVE_LAYER_BOTTOM_COLOR = "#e0fffb";
+export const WAVE_LAYER_TOP_COLOR = "linear-gradient(180deg, #00bbc0 0%, #012729ff 100%)";
+export const WAVE_LAYER_MIDDLE_COLOR = "linear-gradient(180deg, #9ff9ed 0%, #008991ff 100%)";
+export const WAVE_LAYER_BOTTOM_COLOR = "linear-gradient(180deg, #e0fffb 0%, #a1b9b6ff 100%)";
+
+export const WAVE_TOP_LAYER_GRADIENT ="linear-gradient(180deg, #00bbc0 0%, #003f46 100%)";
+export const WAVE_BOTTOM_LAYER_GRADIENT = "linear-gradient(180deg, #00bbc0 0%, #003f46 100%)";
 
 // ===============================
 // TEXTURA DEL MAR
@@ -62,3 +65,4 @@ export const ARENA_PAPERCUT_INSET =
   "inset 0 4px 8px rgba(255, 255, 255, 0.10), inset 0 -1px 3px rgba(23, 37, 61, 0.05)";
 
 export const HERO_HEADER_COLOR = WAVE_LAYER_TOP_COLOR;
+

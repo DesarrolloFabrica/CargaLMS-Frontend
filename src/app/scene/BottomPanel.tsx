@@ -224,8 +224,7 @@ export function BottomPanel() {
               className="scene-panel scene-panel-bottom absolute inset-0"
               style={{
                 zIndex: zMain,
-                backgroundColor: layer.color,
-                backgroundImage: `url('${WAVE_PAPER_TEXTURE_URL}')`,
+                backgroundImage: `${layer.color}, url('${WAVE_PAPER_TEXTURE_URL}')`,
                 backgroundRepeat: "repeat",
                 backgroundSize: WAVE_PAPER_TEXTURE_SIZE,
                 backgroundPosition: layer.texturePosition,
@@ -252,6 +251,18 @@ export function BottomPanel() {
                     draggable={false}
                   />
                 ))}
+
+                {/**
+                 * Texto del footer enlazado a la capa frontal.
+                 */}
+                {tier === "front" && (
+                  <div className="absolute inset-x-0 bottom-4 z-20 flex flex-col items-center justify-between gap-2 px-10 text-center text-xs text-white/60 sm:flex-row sm:text-left sm:text-sm">
+                    <p>
+                      <span className="font-semibold text-white">Carga LMS</span> · Flujo GIF ↔ Coordinador
+                    </p>
+                    <p>© {new Date().getFullYear()} · Versión MVP</p>
+                  </div>
+                )}
               </div>
             </div>,
           ];

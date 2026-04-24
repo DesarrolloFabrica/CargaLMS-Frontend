@@ -35,17 +35,24 @@ export function GifDashboardPage() {
         </div>
       }
     >
-      <div className="grid items-start gap-4 md:grid-cols-2">
-        <CreateRequestPage onCreated={() => setSelectedRequestId(null)} />
-        <div className="h-full md:row-span-2">
-          <RequestWorkDetailPage
-            requestId={selectedRequestId}
-            role="GIF"
-            onDone={() => setSelectedRequestId(null)}
-          />
+      <div className="mx-auto w-full max-w-7xl py-10 md:py-14">
+        <div className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+          {/* Columna izquierda */}
+          <div className="flex min-h-0 flex-col gap-4">
+            <CreateRequestPage onCreated={() => setSelectedRequestId(null)} />
+            <MyRequestsPage role="GIF" onOpenRequest={setSelectedRequestId} />
+          </div>
+          
+          {/* Columna derecha */}
+          <div className="min-h-0">
+            <RequestWorkDetailPage
+              requestId={selectedRequestId}
+              role="GIF"
+              onDone={() => setSelectedRequestId(null)}
+            />
+          </div>
         </div>
-        <MyRequestsPage role="GIF" onOpenRequest={setSelectedRequestId} />
-      </div>
+</div>
     </SiteShell>
   );
 }

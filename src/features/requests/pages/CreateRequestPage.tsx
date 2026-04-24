@@ -39,40 +39,41 @@ export function CreateRequestPage({ onCreated }: CreateRequestPageProps) {
     onCreated();
   }
 
-  const inputStyles = "w-full rounded-md border border-slate-200 bg-slate-50/50 p-2.5 text-sm transition-all focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500";
-  const labelStyles = "block mb-1.5 text-xs font-semibold text-slate-600 uppercase tracking-wider";
+  // Estilos más compactos
+  const inputStyles = "w-full rounded border border-slate-200 bg-slate-50/50 p-2 text-xs transition-all focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500";
+  const labelStyles = "block mb-1 text-[10px] font-bold text-slate-500 uppercase tracking-tight";
 
   return (
-    <div className="w-full">
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-        {/* Cabecera Corporativa */}
-        <div className="border-b border-slate-100 bg-slate-50/50 px-6 py-4">
-          <h2 className="text-lg font-bold text-slate-800">Nueva Solicitud GIF</h2>
-          <p className="text-xs text-slate-500">Complete los detalles para procesar el nuevo material.</p>
+    <div className="w-full max-w-2xl mx-auto">
+      <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl">
+        {/* Cabecera Compacta */}
+        <div className="border-b border-slate-100 bg-slate-50/50 px-4 py-3 flex justify-between items-center">
+          <h2 className="text-sm font-bold text-[#00A8B5]">Nueva Solicitud</h2>
+          <span className="text-[10px] bg-[#BFF0EA] text-[#00A8B5] px-2 py-0.5 rounded font-bold uppercase">GIF</span>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Nombre de la Materia */}
+        <form onSubmit={handleSubmit} className="p-4 space-y-3">
+          <div className="grid grid-cols-2 gap-3">
+            {/* Nombre */}
             <div className="col-span-1">
-              <label className={labelStyles}>Nombre de la Materia</label>
+              <label className={labelStyles}>Materia</label>
               <input
                 type="text"
                 className={inputStyles}
-                placeholder="Ej. Cálculo Integral"
+                placeholder="Nombre..."
                 value={courseName}
                 onChange={(e) => setCourseName(e.target.value)}
                 autoComplete="off"
               />
             </div>
 
-            {/* Tipo de Materia */}
+            {/* Tipo */}
             <div className="col-span-1">
-              <label className={labelStyles}>Tipo de Materia</label>
+              <label className={labelStyles}>Nivel / Tipo</label>
               <input
                 type="text"
                 className={inputStyles}
-                placeholder="Seleccione nivel"
+                placeholder="Seleccione..."
                 list={COURSE_LEVEL_DATALIST_ID}
                 value={courseLevelType}
                 onChange={(e) => setCourseLevelType(e.target.value)}
@@ -88,33 +89,33 @@ export function CreateRequestPage({ onCreated }: CreateRequestPageProps) {
 
           {/* Enlace Drive */}
           <div>
-            <label className={labelStyles}>Enlace de Google Drive</label>
+            <label className={labelStyles}>URL de Google Drive</label>
             <input
               type="url"
               className={inputStyles}
-              placeholder="https://drive.google.com/..."
+              placeholder="Enlace de la carpeta..."
               value={driveUrl}
               onChange={(e) => setDriveUrl(e.target.value)}
             />
           </div>
 
-          {/* Descripción */}
+          {/* Descripción - Altura reducida */}
           <div>
-            <label className={labelStyles}>Descripción del Material</label>
+            <label className={labelStyles}>Descripción</label>
             <textarea
-              rows={3}
+              rows={2}
               className={`${inputStyles} resize-none`}
-              placeholder="Detalle los recursos solicitados..."
+              placeholder="Breve detalle del material..."
               value={materialDescription}
               onChange={(e) => setMaterialDescription(e.target.value)}
             />
           </div>
 
-          {/* Acciones */}
-          <div className="pt-2 flex justify-end">
+          {/* Botón más compacto */}
+          <div className="pt-1">
             <button
               type="submit"
-              className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-colors hover:bg-blue-700 active:transform active:scale-95"
+              className="w-full rounded bg-[#00A8B5] py-2 text-xs font-bold text-white shadow-sm transition-all hover:bg-[#018f9b] active:scale-[0.98]"
             >
               Enviar Solicitud
             </button>

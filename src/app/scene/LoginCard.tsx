@@ -35,7 +35,7 @@ export function LoginCard() {
 
   return (
     <motion.div
-      className="w-full max-w-sm border border-gray-300 bg-white p-8 shadow-sm"
+      className="w-full max-w-sm border border-gray-300 bg-white p-8 shadow-2xl"
       initial={false}
       animate={
         isExiting
@@ -49,28 +49,28 @@ export function LoginCard() {
 
       <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
         <div>
-          <label className="block text-xs font-medium text-gray-700" htmlFor="login-email">
+          <label className="block text-xs font-medium text-[#018F9B]" htmlFor="login-email">
             Correo
           </label>
           <input
             id="login-email"
             type="email"
             autoComplete="username"
-            className="mt-1 w-full border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-500"
+            className="mt-1 w-full border border-[#00A8B5] px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-500"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-700" htmlFor="login-password">
+          <label className="block text-xs font-medium text-[#018F9B]" htmlFor="login-password">
             Contrasena
           </label>
           <input
             id="login-password"
             type="password"
             autoComplete="current-password"
-            className="mt-1 w-full border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-500"
+            className="mt-1 w-full border border-[#00A8B5] px-3 py-2 text-sm text-gray-900 outline-none focus:border-gray-500"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             required
@@ -79,7 +79,7 @@ export function LoginCard() {
         {error ? <p className="text-sm text-gray-700">{error}</p> : null}
         <button
           type="submit"
-          className="w-full border border-gray-900 bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-800"
+          className="w-full border  bg-[#00A8B5] px-3 py-2 text-sm font-medium text-white hover:bg-[#018F9B]"
         >
           Entrar
         </button>
