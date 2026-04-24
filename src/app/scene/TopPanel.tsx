@@ -12,7 +12,7 @@ import {
   WAVE_TOP_PAPERCUT_SHADOW,
   WAVE_TOP_SHADOW_BAND,
   WAVE_TOP_LAYER_GRADIENT,
-  WAVE_BOTTON_LAYER_GRADIENT,
+
 } from "../theme/surfaceColors";
 import { PANEL_EASE, PANEL_MOVE_DURATION_S } from "./sceneConstants";
 import { useVisualTransition } from "./VisualTransitionContext";

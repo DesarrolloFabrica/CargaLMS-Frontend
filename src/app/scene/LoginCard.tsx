@@ -1,5 +1,6 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { motion } from "framer-motion";
 import { useAuth } from "../../features/auth/AuthContext";
 import { AUTH_EMAIL_COORDINATOR, AUTH_EMAIL_GIF_EXAMPLE, AUTH_PASSWORD } from "../../features/auth/constants";
@@ -16,6 +17,7 @@ export function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [lottiePlaybackKey, setLottiePlaybackKey] = useState(0);
 
   const isExiting = sceneStep === "loginCardExit";
 
@@ -23,7 +25,7 @@ export function LoginCard() {
     event.preventDefault();
     setError(null);
     const result = login(email, password);
-    if (!result.ok) {
+    if ("message" in result) {
       setError(result.message);
       return;
     }
@@ -44,8 +46,24 @@ export function LoginCard() {
       }
       transition={{ duration: CARD_EXIT_DURATION_S, ease: [0.22, 1, 0.36, 1] }}
     >
-      <h1 className="text-center text-lg font-semibold text-gray-900">Carga LMS</h1>
-      <p className="mt-1 text-center text-sm text-gray-500">Iniciar sesion</p>
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <h1 className="text-lg font-semibold text-gray-900">Carga LMS</h1>
+          <p className="mt-1 text-sm text-gray-500">Iniciar sesion</p>
+        </div>
+        <motion.div
+          className="h-16 w-16 shrink-0"
+          onHoverStart={() => setLottiePlaybackKey((previous) => previous + 1)}
+        >
+          <DotLottieReact
+            key={lottiePlaybackKey}
+            src="/animaciones/Seal.lottie"
+            autoplay={lottiePlaybackKey > 0}
+            loop={false}
+            className="h-full w-full"
+          />
+        </motion.div>
+      </div>
 
       <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
         <div>
